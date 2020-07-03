@@ -1,0 +1,93 @@
+{% load static %} {% static "images" as baseUrl %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="{% static 'width=device-width, initial-scale=1.0' %}">
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css' %}">
+
+    <title>Welcome To AnyBuy</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'E:/Python Project/webdev/static/css/anybuycss.css' %}">
+</head>
+
+
+<body>
+    <header class="main_header">
+        <div id="navbar" class="navbar">
+
+
+            <div id=pic_logo> <img src="{% static 'E:/Python Project/webdev/static/images/online-shopping.png' %}" height="150" width="150"> </div>
+
+
+
+            <div class="newbox" id="newbox">
+
+                <h1 id="new">Any<span id="new1">Buy</span></h1>
+
+            </div>
+        </div>
+        <div class="content" id="content">
+            <ul>
+                <li id="nav2"><a href="">Popular Product</a></li>
+                <li id="nav2"><a href="">New</a></li>
+                <li id="nav2"><a href="">Recomended</a></li>
+
+                {% if user.is_authenticated %}
+                <li id="nav2"><a href="">User: {{user.first_name}}</a></li>
+                <li id="nav2"><a href="accounts/logout">Logout</a></li>
+
+
+                {% else %}
+                <li id="nav2"><a href="accounts/login">Login</a></li>
+                <li id="nav2"><a href="accounts/register">Register</a></li>
+                {% endif %}
+            </ul>
+
+        </div>
+
+    </header>
+
+    <div class="all_items" id="all_items">
+        {% for update in updates %}
+        <div class="item" id="item">
+            <img src="{{update.img.url}}">
+            <h1>{{update.name}}</h1>
+            <p>{{update.desc}}</p>
+            <h3>Price ${{update.price}}</h3>
+
+
+        </div>
+        {% endfor %}
+
+        <!-- <div class="item" id="item">
+            <img src="{% static 'E:/Python Project/webdev/static/images/img_1.jpg' %}">
+            <h1>{{update.name1}}</h1>
+            <p>{{update.desc1}}</p>
+            <h3>Price ${{update.price1}} </h3>
+        </div>
+
+        <div class="item" id="item">
+            <img src="{% static 'E:/Python Project/webdev/static/images/img_4.jpg' %}">
+            <h1>{{update.name2}}</h1>
+            <p>{{update.desc2}}</p>
+            <h3>Price ${{update.price2}}</h3>
+        </div>
+        <div class="item" id="item">
+            <img src="{% static 'E:/Python Project/webdev/static/images/img_3.jpg' %}">
+            <h1>{{update.name3}}</h1>
+            <p>{{update.desc3}}</p>
+            <h3>Price ${{update.price3}}</h3>
+        </div> -->
+    </div>
+
+    <footer id="footer">
+        <h1>Thanks For Visiting Our WebStore</h1>
+        <!-- <input type="submit" name="LOGOUT"> -->
+    </footer>
+
+</body>
+
+</html>
